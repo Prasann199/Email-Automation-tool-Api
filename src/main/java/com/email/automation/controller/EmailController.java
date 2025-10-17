@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/email")
-@CrossOrigin(origins = "http://localhost:5173") // React URL
+@CrossOrigin(origins = "https://email-automation-tool-client.onrender.com") // React URL
 public class EmailController {
 
     @Autowired
