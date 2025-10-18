@@ -1,6 +1,7 @@
 package com.email.automation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
+import org.springframework.mail.MailException;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
@@ -17,7 +18,11 @@ public class EmailService {
 
     public void sendEmails(List<String> recipients, String subject, String message, MultipartFile file) throws Exception {
         for (String to : recipients) {
+            try {
             sendEmailWithAttachment(to.trim(), subject, message, file);
+        } catch (MailException e) {
+            throw new Exception("❌ Failed to send email to " + to + ": " + e.getMessage());
+        }
         }
     }
 
