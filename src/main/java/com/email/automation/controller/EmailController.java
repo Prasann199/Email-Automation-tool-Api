@@ -18,6 +18,7 @@ public class EmailController {
     @PostMapping("/send")
     public ResponseEntity<String> sendEmail(@ModelAttribute EmailRequest request) {
         try {
+            System.out.println("I am inside backend...!");
             emailService.sendEmails(request.getRecipients(), request.getSubject(), request.getMessage(), request.getFile());
             return ResponseEntity.ok("✅ Emails sent successfully!");
         } catch (Exception e) {
